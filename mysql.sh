@@ -46,7 +46,7 @@ VALIDATE $? "enabled MySQL Server"
 systemctl start mysqld &>>$LOGFILE
 VALIDATE $? "started MySQL server"
 
-mysql -h mysql.vsg9.online -u root -pExpenseApp@1 -e 'show databases;' 
+mysql -h mysql.vsg9.online -u root -pExpenseApp@1 -e 'show databases;' &>>$LOGFILE
 if [ $? -ne 0 ]
 then 
     echo -e "MySQL root password is not setup,seting up" &>>$LOGFILE
@@ -54,5 +54,4 @@ then
     VALIDATE $? "Setting Up root password"
 else
     echo -e "MySQL root password already setup $Y skipping.. $N" &>>$LOGFILE
-VALIDATE $? "Setting Up root password"
 fi
